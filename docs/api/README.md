@@ -8,7 +8,7 @@ ForkDelta's API gives you access to ticker information, orders, trades, deposits
 ForkDelta's API is socket.io based. The API utilizes SSL on all connections to keep your data private.
 You can connect to ForkDelta's API through this endpoint:
 
- - https://api.forkdelta.com
+ - https://api.planqdelta.com
 
 ## Rate Limiting
 
@@ -71,7 +71,7 @@ Example `returnTicker`:
 ```
 If you would like to get data on each ticker including names, please take a look at our [tokenbase repository](https://github.com/forkdelta/tokenbase). If you would just like a simple way to access ticker symbols, take a look at our [configuration JSON](https://forkdelta.github.io/config/main.json).
 
-We also supply a REST version of this data, but highly recommend using the websocket server for the most up to date information. The REST version can be found here: https://api.forkdelta.com/returnTicker
+We also supply a REST version of this data, but highly recommend using the websocket server for the most up to date information. The REST version can be found here: https://api.planqdelta.com/returnTicker
 
 #### trades | myTrades
 
