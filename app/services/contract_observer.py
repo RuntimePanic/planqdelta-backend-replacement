@@ -1,6 +1,6 @@
-# ForkDelta Backend
+# PlanqDelta Backend
 # https://github.com/forkdelta/backend-replacement
-# Copyright (C) 2018, Arseniy Ivanov and ForkDelta Contributors
+# Copyright (C) 2018, Arseniy Ivanov and PlanqDelta Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -102,7 +102,7 @@ async def main():
             else:
                 subscription_results = rapidjson.loads(message)["params"]["result"]
                 if isinstance(subscription_results, list):
-                    #Parity websocket returns multiple result at a time: [ {'address': '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819', 'topics': ... }, {'address': '0x8d ... } ]
+                    #Parity websocket returns multiple result at a time: [ {'address': '0x41C63D0d833e09499d330B4fB509A5f938b94aE7', 'topics': ... }, {'address': '0x8d ... } ]
                     if len(subscription_results) > 0:
                         log_latency(subscription_results[0])
                     for subscription_result in subscription_results:
@@ -110,7 +110,7 @@ async def main():
                             subscription_result["topics"][0],
                             subscription_result)
                 else:
-                    #Geth websocket only returns one result at a time: {'address': '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819', 'topics': [... }
+                    #Geth websocket only returns one result at a time: {'address': '0x41C63D0d833e09499d330B4fB509A5f938b94aE7', 'topics': [... }
                     subscription_result = subscription_results
                     if len(subscription_results) > 0:
                         log_latency(subscription_result)
