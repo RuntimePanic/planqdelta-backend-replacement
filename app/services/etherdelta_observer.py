@@ -232,7 +232,7 @@ async def record_order(order):
 
 
 async def main(my_id, num_observers):
-    ws_url = ED_WS_SERVERS[my_id]
+    ws_url = ED_WS_SERVERS[0]
     io_client = SocketIOClient(ws_url)
     io_client.on("orders", on_orders)
     io_client.on("market", on_market)
