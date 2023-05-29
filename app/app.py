@@ -40,10 +40,10 @@ class DB:
             self.config.POSTGRES_USER, self.config.POSTGRES_PASSWORD,
             self.config.POSTGRES_HOST, self.config.POSTGRES_DB)
         # Create a pool object synchronously, skip creating a connection right away
-        self.pool = asyncpg.create_pool(dsn=dsn, min_size=0, max_size=25)
+        self.pool = await asyncpg.create_pool(dsn=dsn, min_size=0, max_size=25)
         # Declare pool initialized: async part of create_pool is noop when min_size=0
         self.pool._initialized = True
-        self.acquire_connection = self.pool.acquire
+        self.acquire_connection = await self.pool.acquire
 
 
 class App:
@@ -52,7 +52,9 @@ class App:
             self.logger = logging.getLogger('App.App')
             self.logger.setLevel(logging.DEBUG)
             self.config = config
-            self.db = DB(config)
+            loop = asyncio.get_event_loop()
+            self.db = loop.run_until_complete(DB(config))
+            #self.db = DB(config)
             self.huey = RedisHuey(host="redis", result_store=False)
             self.web3 = Web3(HTTPProvider(config.HTTP_PROVIDER_URL))
             self._tokens = None
