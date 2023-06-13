@@ -33,6 +33,7 @@ services:
     container_name: nginx # Need to name it in a specific way for nginx-dockergen to be able to restart it
     ports:
       - "443:443"
+      - "80:80"
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./etc/nginx/vhost.d:/etc/nginx/vhost.d
